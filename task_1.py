@@ -1,5 +1,5 @@
 import subprocess
-
+from typing import Tuple
 TASK_TEXT = 'Необходимо реализовать функцию select.\n' \
             'Так как база фактов небольшая, то задание будет засчитано в случае прохождения всех тестов. ' \
             'Также предусмотрен бонус за оптимальное решение по числу заданных вопросов'
@@ -11,7 +11,7 @@ def get_task_text() -> str:
     return TASK_TEXT
 
 
-def get_student_result(student_id: int) -> (str, int):
+def get_student_result(student_id: int) -> Tuple[str, int]:
     msg = ""
     bal = 0
     if results[student_id][0] == 'ok':
@@ -40,7 +40,10 @@ async def task_test(student_id: int, file_path: str):
     temp_wrapper = "task_1_py_files/temp_wrapper_" + str(student_id) + ".py"
     with open(temp_wrapper, "w") as f:
         file_path = file_path.replace('/', '.')
-        f.write("from " + file_path[:-3] + " import select\n")
+        split_string = file_path.split(".")
+        file_path_need = split_string[1] + "." + split_string[2]
+        print(file_path_need)
+        f.write("from " + file_path_need[:-3] + " import select\n")
         f.write(wrapper_code)
 
     result = "task_1_py_files/result_" + str(student_id) + ".txt"

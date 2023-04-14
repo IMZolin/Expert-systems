@@ -1,0 +1,5 @@
+{
+    "python.analysis.extraPaths": [
+        "./task_3_py_files"
+    ]
+}

@@ -31,7 +31,9 @@ async def task_test(student_id: int, file_path: str):
     temp_wrapper = "task_2_py_files/temp_wrapper_" + str(student_id) + ".py"
     with open(temp_wrapper, "w") as f:
         file_path = file_path.replace('/', '.')
-        f.write("from " + file_path[:-3] + " import entropy\n")
+        split_string = file_path.split(".")
+        file_path_need = split_string[1] + "." + split_string[2]
+        f.write("from " + file_path_need[:-3] + " import entropy\n")
         f.write(wrapper_code)
 
     result = "task_2_py_files/result_" + str(student_id) + ".txt"

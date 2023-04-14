@@ -253,8 +253,8 @@ async def engine_files(msg: types.Message):
         await bot.download_file(file_path, new_path)
         await bot.send_message(text="Файл получил", chat_id=msg.from_user.id)
         await bot.send_message(text="Начинаю проверку", chat_id=msg.from_user.id)
-        await task_2.task_test(msg.from_user.id, new_path)
-        text, bal = task_2.get_student_result(msg.from_user.id)
+        await task_3.task_test(msg.from_user.id, new_path)
+        text, bal = task_3.get_student_result(msg.from_user.id)
         await bot.send_message(text="Проверил:\n" + str(text), chat_id=msg.from_user.id)
         if bal > 0:
             student.update_balance(bal)
