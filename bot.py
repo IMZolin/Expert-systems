@@ -3,8 +3,8 @@ import random
 
 from aiogram import Bot, Dispatcher, types
 
-import task_0
-import task_1
+import utils.tasks.task_0.task_0 as task_0
+import utils.tasks.task_2.task_2 as task_2
 import task_2
 import task_3
 from config import TOKEN
@@ -184,7 +184,7 @@ async def engine(msg: types.Message):
                                    reply_markup=tip_btn)
 
     elif student.current_step == LabStage.step_3:
-        await bot.send_message(text=task_1.get_task_text(), chat_id=student.user_id)
+        await bot.send_message(text=task_2.get_task_text(), chat_id=student.user_id)
         student.current_step = LabStage.step_4
         await bot.send_photo(photo=InputFile("task_1.png"), chat_id=student.user_id)
         await bot.send_document(document=InputFile("template_1.py"), chat_id=student.user_id)
@@ -223,8 +223,8 @@ async def engine_files(msg: types.Message):
         await bot.download_file(file_path, new_path)
         await bot.send_message(text="Файл получил", chat_id=msg.from_user.id)
         await bot.send_message(text="Начинаю проверку", chat_id=msg.from_user.id)
-        await task_1.task_test(msg.from_user.id, new_path)
-        text, bal = task_1.get_student_result(msg.from_user.id)
+        await task_2.task_test(msg.from_user.id, new_path)
+        text, bal = task_2.get_student_result(msg.from_user.id)
         await bot.send_message(text="Проверил:\n" + str(text), chat_id=msg.from_user.id)
         if bal > 0:
             student.current_step = LabStage.step_5

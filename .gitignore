@@ -1,0 +1,4 @@
+/.idea
+*.docx
+/__pycache__
+.env
