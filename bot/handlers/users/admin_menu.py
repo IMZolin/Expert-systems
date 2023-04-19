@@ -13,13 +13,13 @@ async def _export_users(message: Message):
     count = count_users()
 
     file_path = DIR / 'users.csv'
-    with open(file_path, 'w', encoding='UTF8', newline='') as f:
+    with open(file_path, 'w', encoding='cp1251', newline='') as f:
         writer = csv.writer(f)
 
-        writer.writerow(['id', 'name', 'username', 'scores', 'mark'])
+        writer.writerow(['id', 'name', 'username', 'task_1', 'task_2', 'tssk_3'])
 
         for user in get_users():
-            writer.writerow([user.id, user.name, user.username, user.scores, user.mark])
+            writer.writerow([user.id, user.name, user.username, user.task_1_score, user.task_2_scores, user.task_3_scores])
 
     text_file = InputFile(file_path, filename='users.csv')
     await message.answer_document(text_file, caption=('Всего пользователей: {count}').format(count=count))

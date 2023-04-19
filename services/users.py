@@ -28,23 +28,29 @@ def update_username(user: User, name: str, username: str = None) -> User:
     return user
 
 
-async def update_user(id: int, name: Optional[str] = None, scores: Optional[int] = None, current_step: Optional[int] = None, task_1_best: Optional[int] = None, mark: Optional[int] = None) -> bool: 
+async def update_user(id: int, name: Optional[str] = None, task_1_score: Optional[int] = None, task_2_score: Optional[int] = None, task_3_score: Optional[int] = None, scores: Optional[int] = None, current_step: Optional[int] = None, mark: Optional[int] = None) -> bool: 
     user = get_user(id)
     if user is None:
         return False
-    else:
-        if name is not None:
-            user.name = name
-        if scores is not None:
-            user.scores = scores
-        if current_step is not None:
-            user.current_step = current_step
-        if task_1_best is not None:
-            user.task_1_best = task_1_best
-        if mark is not None:
-            user.mark = mark
-        user.save()
-        return True
+    if name is not None:
+        user.name = name
+    if task_1_score is not None:
+        user.task_1_score = task_1_score
+    if task_2_score is not None:
+        user.task_2_scores = task_2_score
+        # User.update(task_2_score=task_2_score).where(User.id==id)
+        # print(user.task_2_score)
+    if task_3_score is not None:
+        user.task_3_scores = task_3_score
+    if scores is not None:
+        user.scores = scores
+    if current_step is not None:
+        user.current_step = current_step
+    if mark is not None:
+        user.mark = mark
+    user.save()
+    return True
+        
 
 
 def edit_user_language(id: int, language: str):
@@ -67,8 +73,7 @@ def get_or_create_user(id: int, name: str, username: str = None) -> User:
     user = get_user(id)
 
     if user:
-        user = update_username(user, name, username)
-
+        # user = update_user(user.id)
         return user
 
     return create_user(id, name, username)
@@ -77,6 +82,6 @@ def get_or_create_user(id: int, name: str, username: str = None) -> User:
 def get_user_info(user: User) -> str:
     result = ""
     result += f"<b>" + user.name + "</b>\n"
-    result += f"<b>" + str(user.scores) + "$</b>"
-    result += f"<b>" + str(user.mark) + "$</b>"
+    result += f"<b> Your scores:" + str(user.scores) + "$</b>\n"
+    # result += f"<b>" + str(user.mark) + "</b>"
     return result

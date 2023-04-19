@@ -10,7 +10,9 @@ class User(BaseModel):
     name = CharField(default=None)
     username = CharField(default=None, null=True)
     current_step = IntegerField(default=0, null=True)
-    task_1_best = IntegerField(default=0, null=True)
+    task_1_score = IntegerField(default=0, null=True)
+    task_2_scores = IntegerField(default=0, null=True)
+    task_3_scores = IntegerField(default=0, null=True)
     scores = IntegerField(default=0, null=True)
     mark = IntegerField(default=0, null=True)
 
