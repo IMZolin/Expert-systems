@@ -1,5 +1,17 @@
 {
     "python.analysis.extraPaths": [
         "./task_3_py_files"
+    ],
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 5432,
+            "driver": "PostgreSQL",
+            "username": "postgres",
+            "database": "expert_system_db",
+            "password": "sqlzim",
+            "name": "expert_system_db"
+        }
     ]
 }

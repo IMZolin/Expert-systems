@@ -1,10 +1,12 @@
 import subprocess
 from typing import Tuple
-TASK_TEXT = 'Необходимо реализовать функцию select.\n' \
+TASK_TEXT = '<b>Задание 2: Найм на работу</b>\n' \
+            'Необходимо реализовать функцию select.\n' \
             'Так как база фактов небольшая, то задание будет засчитано в случае прохождения всех тестов. ' \
             'Также предусмотрен бонус за оптимальное решение по числу заданных вопросов'
-cur_dir = "task_1_py_files"
+cur_dir = "task_2_py_files"
 results = {}
+task_2_path = "utils/tasks/task_2/task_2_py_files"
 
 
 def get_task_text() -> str:
@@ -33,20 +35,21 @@ def get_student_result(student_id: int) -> Tuple[str, int]:
 
 
 async def task_test(student_id: int, file_path: str):
+    wrapper_path = task_2_path + "/wrapper.py"
     wrapper_code = ""
-    with open("task_1_py_files/wrapper.py", "r") as f:
+    with open(wrapper_path, "r") as f:
         wrapper_code = f.read()
 
-    temp_wrapper = "task_1_py_files/temp_wrapper_" + str(student_id) + ".py"
+    temp_wrapper = task_2_path + "/temp_wrapper_" + str(student_id) + ".py"
     with open(temp_wrapper, "w") as f:
         file_path = file_path.replace('/', '.')
         split_string = file_path.split(".")
         file_path_need = split_string[1] + "." + split_string[2]
         print(file_path_need)
-        f.write("from " + file_path_need[:-3] + " import select\n")
+        f.write("from " + file_path_need + " import select\n")
         f.write(wrapper_code)
 
-    result = "task_1_py_files/result_" + str(student_id) + ".txt"
+    result = task_2_path + "/result_" + str(student_id) + ".txt"
     f = open(result, "w")
     try:
         c = subprocess.call(['python', temp_wrapper], timeout=10, stdout=f)
