@@ -1,17 +1,26 @@
-# here is a template of a function decodes caesar cipher with definite shift
+""" Вам нужно написать функцию дешифровщика шифра Цезаря с определенным сдвигом
+На вход она принимает зашифрованное слово, которое вам выдал бот """
 def caesar_decode(encoded_s: str, shift: int):
-    # encoded_s is an encoded word which was given by tg-bot
-
-    decoded_s = ''  # here is your decoded word
+    decoded_s = ''
     ru_alphabet = 'абвгдеёжзийклмнопрстуфхцчшщъыьэюя'
 
-    # input your solution here
-    # tip: there is a reverse indexing in python (ex: ru_alphabet[-1] = 'я')
+    """ 
+    Напишите здесь свое решение
+    
+    tip: В python реализована обратная индексация, т.е. код list[-1] вернет последний элемент списка list
+    list[-2] - предпоследний и т.д.
+    
+    Вы можете не пользоваться этой подсказкой 
+    """
 
     return decoded_s
 
 
 if __name__ == '__main__':
-    # prints all the variants of decoded_word. You need to choose the right.
+    """
+    Следующий цикл выводит все расшифрованные слова со всеми возмоными для русского языка сдвигами
+    Вам нужно выбрать правильное слово (Оно будет единственным что-либо значащим словом, остальные будут 
+    белибердой из букв)
+    """
     for i in range(1, 33):
         print(caesar_decode('', i))
