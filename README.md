@@ -1,7 +1,35 @@
-### Expert systems Telegram bot (1-st lab for API 2-nd semester, SPbPU)
+### Expert systems Telegram bot 
 
 Telergam bot for organizing lab work on the topic: Expert Systems
 
+Tasks:
+
+1. Caesar's cipher
+    - You are given an encrypted word as input, you don't know the shift
+    - You have to implement a decryptor that goes through all the possible shifts
+    - Decrypt the resulting word
+2. Hiring
+   - Each candidate has 4 characteristics: 
+     - Level (junior/middle/senior)
+     - Programming language (Python/C++/Java/R) 
+      One candidate = one language
+     - higher education level (yes/no)
+     - Favorite OS (Windows/Linux/MacOS)
+   - Candidate = [level, language, higher education, OS]
+   - You are given a list of 10 candidates(candidate[i] = (junior, -, -, -) candidate[j] = (middle, C++, yes, -))
+   - So you also know the "ideal" candidate pattern. If the person does not meet this template, you refuse him, otherwise you hire him.
+   - You need to implement a control system (function Select) with a strategy of the first fit that brings us closer to a decision, which will return either the decision made (hire/reject) or the next question to ask the candidate.
+   - Example:
+    Let perf_cand = [middle, -, yes, windows/linux]
+      At this point, we query candidate = [senior, ?, yes, ?]
+
+   - The next question should be about the OS, not the language! Since the company does not care what language the candidate writes in.
+3. Information entropy
+   - You are given 10 different lines of labels = [...].
+   - You need to implement 2 functions: class_probabilities and entropy. The first one calculates class_probabilities and the second one entropy of those classes.
+   - As a response the bot also accepts 10 lines with entropy values for each line labels = ... 
+   - Note: Each value in the message should be on a separate line
+  
 URL: https://t.me/ExpertSystemsBot
 <hr>
 
@@ -52,7 +80,7 @@ URL: https://t.me/ExpertSystemsBot
 
 ### First steps
 ```bash
-git clone https://github.com/IMZolin/Todolist-Telegram-bot <your project name>
+git clone https://github.com/IMZolin/Expert-systems.git <your project name>
 cd <your project name>
 pip install -r requirements.txt
 
